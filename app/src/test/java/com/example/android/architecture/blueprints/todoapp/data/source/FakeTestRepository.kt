@@ -52,7 +52,9 @@ class FakeTestRepository : TasksRepository {
     }
 
     override suspend fun completeTask(task: Task) {
-        TODO("Not yet implemented")
+        val completedTask = Task(task.title, task.description, true, task.id)
+        taskServiceData[task.id] = completedTask
+        refreshTasks()
     }
 
     override suspend fun completeTask(taskId: String) {
@@ -60,7 +62,9 @@ class FakeTestRepository : TasksRepository {
     }
 
     override suspend fun activateTask(task: Task) {
-        TODO("Not yet implemented")
+        val completedTask = Task(task.title, task.description, false, task.id)
+        taskServiceData[task.id] = completedTask
+        refreshTasks()
     }
 
     override suspend fun activateTask(taskId: String) {
